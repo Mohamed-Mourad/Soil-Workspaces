@@ -8,10 +8,12 @@ class DarkTheme {
     primaryContainer: Color(0xffFF8A37),
     onPrimaryContainer: Color(0xffffffff),
 
-    secondary: Color(0xff8475EF),
+    secondary: Color(0xDDFFFFFF),
     onSecondary: Color(0xffffffff),
-    secondaryContainer: Color(0xff8475EF),
+    secondaryContainer: Color(0xDDFFFFFF),
     onSecondaryContainer: Color(0xffffffff),
+
+    tertiary: Color(0xff2d2d2d),
 
     error: Color(0xffd32f2f),
     onError: Color(0xffffffff),
@@ -22,4 +24,15 @@ class DarkTheme {
 
 
   );
+
+  static ThemeData get theme {
+    return ThemeData(
+      colorScheme: colorScheme,
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          padding: const EdgeInsets.all(14),
+        ),
+      ),
+    );
+  }
 }

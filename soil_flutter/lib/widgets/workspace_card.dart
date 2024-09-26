@@ -1,12 +1,17 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 import 'package:soil_flutter/widgets/default_button.dart';
-import 'package:soil_flutter/widgets/item_separator.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class WorkspaceCard extends StatelessWidget {
+  const WorkspaceCard({
+    super.key,
+    required this.workspaceName,
+    required this.workspaceAmenities,
+    required this.workspaceImage,
+  });
+
+  final String workspaceName;
+  final List<String> workspaceAmenities;
+  final String workspaceImage;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +33,9 @@ class HomeScreen extends StatelessWidget {
                   height: 160.0,
                   width: double.infinity,
                   child: Image(
-                      image: NetworkImage(
-                        "https://st4.depositphotos.com/2673929/24977/i/450/depositphotos_249777954-stock-photo-loft-gray-open-space-office.jpg",
-                      ),
+                    image: NetworkImage(
+                      "https://st4.depositphotos.com/2673929/24977/i/450/depositphotos_249777954-stock-photo-loft-gray-open-space-office.jpg",
+                    ),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -38,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Olive Branch",
+                      workspaceName,
                       style: TextStyle(
                         color: colorScheme.onPrimary,
                         fontSize: 24.0,
@@ -62,8 +67,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8.0,),
-                DefaultButton(text: "Reserve now!", function: (){}),
-                ItemSeparator(),
+                DefaultButton(text: "Reserve now!", function: (){})
               ],
             ),
           ],
