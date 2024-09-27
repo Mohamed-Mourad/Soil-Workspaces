@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface SlotRepo extends JpaRepository<SlotEntity, Integer> {
     Optional<SlotEntity> findByWorkspaceIdAndDateTimeFrom(int workspaceId, LocalDateTime dateTimeFrom);
+    List<SlotEntity> findAllByWorkspaceId(int workspaceId);
 }
 

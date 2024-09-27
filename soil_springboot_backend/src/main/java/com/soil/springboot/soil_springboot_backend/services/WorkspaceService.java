@@ -2,6 +2,7 @@ package com.soil.springboot.soil_springboot_backend.services;
 
 import com.soil.springboot.soil_springboot_backend.models.dtos.ReservationConfirmationDto;
 import com.soil.springboot.soil_springboot_backend.models.dtos.ReservationRequestDto;
+import com.soil.springboot.soil_springboot_backend.models.dtos.WorkspaceDto;
 import com.soil.springboot.soil_springboot_backend.models.entities.SlotEntity;
 import com.soil.springboot.soil_springboot_backend.models.entities.WorkspaceEntity;
 import com.soil.springboot.soil_springboot_backend.repos.SlotRepo;
@@ -25,13 +26,13 @@ public class WorkspaceService {
     }
 
     @Transactional
-    public ReservationConfirmationDto bookWorkspace(ReservationRequestDto bookingRequestDto) {
+    public ReservationConfirmationDto reserveWorkspace(ReservationRequestDto reservationRequestDto) {
         List<SlotEntity> reservedSlots = new ArrayList<>();
-        LocalDateTime start = bookingRequestDto.getDateTimeFrom();
-        LocalDateTime end = bookingRequestDto.getDateTimeTo();
+        LocalDateTime start = reservationRequestDto.getDateTimeFrom();
+        LocalDateTime end = reservationRequestDto.getDateTimeTo();
 
         // Fetch the workspace
-        WorkspaceEntity workspace = workspaceRepository.findById(bookingRequestDto.getWorkspaceId())
+        WorkspaceEntity workspace = workspaceRepository.findById(reservationRequestDto.getWorkspaceId())
                 .orElseThrow(() -> new RuntimeException("Workspace not found"));
 
         // Loop through each one-hour slot between start and end times
@@ -56,8 +57,17 @@ public class WorkspaceService {
             start = nextHour;
         }
 
-        // Return booking confirmation
+        // Return reservation confirmation
         return new ReservationConfirmationDto(reservedSlots);
+    }
+
+    public List<WorkspaceDto> getAllWorkspaces() {
+        List<WorkspaceEntity> workspaces = workspaceRepository.findAll();
+        List<WorkspaceDto> workspaceDtos = new ArrayList<>();
+        for (WorkspaceEntity workspace : workspaces) {
+            workspaceDtos.add(WorkspaceDto.fromEntity(workspace));
+        }
+        return workspaceDtos;
     }
 }
 

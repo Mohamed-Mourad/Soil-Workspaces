@@ -26,10 +26,10 @@ class WorkspaceBloc extends Bloc<WorkspaceEvent, WorkspaceState> {
             'https://imageio.forbes.com/blogs-images/davidburkus/files/2016/06/space-desk-workspace-coworking-1200x795.jpg?height=471&width=711&fit=bounds',
           ],
           location: 'Location $index',
+          capacity: 5 + index,
           amenities: Amenities(
             wifi: index % 2 == 0,
             projector: index % 3 == 0,
-            capacity: 5 + index,
           ),
         );
       });

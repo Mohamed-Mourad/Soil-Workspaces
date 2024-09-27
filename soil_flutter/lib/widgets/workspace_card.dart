@@ -83,7 +83,7 @@ class WorkspaceCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      workspace.amenities.capacity.toString(),
+                      workspace.capacity.toString(),
                       style: TextStyle(
                         color: colorScheme.onPrimary,
                         fontSize: 16.0,

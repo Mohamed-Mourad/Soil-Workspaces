@@ -22,9 +22,10 @@ public class WorkspaceEntity {
     private String location;
     private int capacity;
 
-    @ElementCollection
-    @CollectionTable(name = "amenities", joinColumns = @JoinColumn(name = "workspace_id"))
-    @Column(name = "amenity")
-    private List<String> amenities;
+    @Column(columnDefinition = "LONGTEXT")
+    private String images;
+
+    @OneToOne(mappedBy = "workspace", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private AmenitiesEntity amenities;
 }
 

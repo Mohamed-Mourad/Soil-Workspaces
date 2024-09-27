@@ -5,6 +5,7 @@ class Workspace {
   String name;
   List<String> images;
   String location;
+  int capacity;
   Amenities amenities;
 
   Workspace({
@@ -12,6 +13,7 @@ class Workspace {
     required this.name,
     required this.images,
     required this.location,
+    required this.capacity,
     required this.amenities,
   });
 
@@ -21,6 +23,7 @@ class Workspace {
       name: json['name'],
       images: List<String>.from(json['images']),
       location: json['location'],
+      capacity: json['capacity'],
       amenities: Amenities.fromJson(json['amenities']),
     );
   }

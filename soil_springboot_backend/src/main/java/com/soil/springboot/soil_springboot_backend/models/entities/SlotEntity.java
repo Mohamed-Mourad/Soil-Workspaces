@@ -22,8 +22,12 @@ public class SlotEntity {
     @JoinColumn(name = "workspace_id")
     private WorkspaceEntity workspace;
 
+    @Column(name = "date_time_from")
     private LocalDateTime dateTimeFrom;
+
+    @Column(name = "date_time_to")
     private LocalDateTime dateTimeTo;
+
     private boolean reserved;
 }
 

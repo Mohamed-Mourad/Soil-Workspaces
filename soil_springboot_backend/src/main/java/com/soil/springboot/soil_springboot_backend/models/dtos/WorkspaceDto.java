@@ -17,7 +17,8 @@ public class WorkspaceDto {
     private String name;
     private String location;
     private int capacity;
-    private List<String> amenities;
+    private String images;
+    private AmenitiesDto amenities;
 
     public static WorkspaceDto fromEntity(WorkspaceEntity workspace) {
         return new WorkspaceDto(
@@ -25,7 +26,8 @@ public class WorkspaceDto {
                 workspace.getName(),
                 workspace.getLocation(),
                 workspace.getCapacity(),
-                workspace.getAmenities()
+                workspace.getImages(),
+                workspace.getAmenities()!= null ? AmenitiesDto.fromEntity(workspace.getAmenities()) : null
         );
     }
 }
