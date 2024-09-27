@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soil_flutter/blocs/navbar/navbar_bloc.dart';
-import 'package:soil_flutter/blocs/theme/theme_bloc.dart';
 import 'package:soil_flutter/screens/home_screen.dart';
 import 'package:iconly/iconly.dart';
+import 'package:soil_flutter/widgets/bottom_nav_bar.dart';
+import 'package:soil_flutter/widgets/default_drawer.dart';
 
 class SoilAppLayout extends StatelessWidget {
   const SoilAppLayout({super.key});
@@ -15,27 +16,26 @@ class SoilAppLayout extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Column(
-            children: [
-              Text(
-                "Soil",
-                style: TextStyle(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                  height: 0.0
-                ),
+        centerTitle: true,
+        title: Column(
+          children: [
+            Text(
+              "Soil",
+              style: TextStyle(
+                color: colorScheme.onPrimary,
+                fontWeight: FontWeight.bold,
+                height: 0.0
               ),
-              Text(
-                "SPACES",
-                style: TextStyle(
-                  color: colorScheme.onPrimary,
-                  fontSize: 8.0,
-                  height: 0.0
-                ),
+            ),
+            Text(
+              "SPACES",
+              style: TextStyle(
+                color: colorScheme.onPrimary,
+                fontSize: 8.0,
+                height: 0.0
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         leading: Builder(
           builder: (context) {
@@ -60,65 +60,12 @@ class SoilAppLayout extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: colorScheme.primary,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Soil",
-                    style: TextStyle(
-                        color: colorScheme.onPrimary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 34.0,
-                        height: 0.0
-                    ),
-                  ),
-                  Text(
-                    "SPACES",
-                    style: TextStyle(
-                        color: colorScheme.onPrimary,
-                        fontSize: 12.0,
-                        height: 0.0
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            BlocBuilder<ThemeBloc, ThemeState>(
-                builder: (context, state) {
-                  return ListTile(
-                    title: Text(
-                      'Dark mode',
-                      style: TextStyle(
-                        color: colorScheme.onPrimary,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: state == ThemeState.dark,
-                      onChanged: (value) {
-                        context.read<ThemeBloc>().add(ThemeEvent.toggleTheme);
-                      },
-                      inactiveThumbColor: Colors.grey,
-                      inactiveTrackColor: Colors.black54,
-                    ),
-                  );
-                }
-            ),
-          ],
-        ),
-      ),
+      drawer: const DefaultDrawer(),
       body: BlocBuilder<NavbarBloc, NavbarState>(
         builder: (context, state) {
           switch (state.selectedIndex) {
             case 0:
-              return const HomeScreen();
+              return HomeScreen();
             case 1:
               return const EventsPage();
             case 2:
@@ -128,43 +75,11 @@ class SoilAppLayout extends StatelessWidget {
             case 4:
               return const ProfilePage();
             default:
-              return const HomeScreen();
+              return HomeScreen();
           }
         },
       ),
-      bottomNavigationBar: BlocBuilder<NavbarBloc, NavbarState>(
-        builder: (context, state) {
-          return BottomNavigationBar(
-            onTap: (index) => context.read<NavbarBloc>().add(NavbarPageChanged(index: index)),
-            currentIndex: state.selectedIndex,
-            selectedItemColor: colorScheme.primary,
-            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-            unselectedItemColor: colorScheme.onPrimary,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(IconlyLight.home),
-                  label: "Home"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(IconlyLight.calendar),
-                  label: "Events"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(IconlyLight.bag),
-                  label: "Sips"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(IconlyLight.time_circle),
-                  label: "Upcoming"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(IconlyLight.profile),
-                  label: "Profile"
-              ),
-            ],
-          );
-        },
-      ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
@@ -175,8 +90,16 @@ class EventsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Events Page'),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Center(
+      child: Text(
+          'Events Page',
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+        ),
+      ),
     );
   }
 }
@@ -184,10 +107,19 @@ class EventsPage extends StatelessWidget {
 class SipsPage extends StatelessWidget {
   const SipsPage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Sips Page'),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Center(
+      child: Text(
+        'Sips Page',
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+        ),
+      ),
     );
   }
 }
@@ -197,8 +129,16 @@ class UpcomingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Upcoming Page'),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Center(
+      child: Text(
+          'Upcoming Page',
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+        ),
+      ),
     );
   }
 }
@@ -208,8 +148,16 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page'),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Center(
+      child: Text(
+          'Profile Page',
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+        ),
+      ),
     );
   }
 }

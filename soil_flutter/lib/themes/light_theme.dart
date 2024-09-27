@@ -6,21 +6,22 @@ class LightTheme {
     primary: Color(0xffFF8A37),
     onPrimary: Color(0xff1E1E1E),
     primaryContainer: Color(0xffFF8A37),
-    onPrimaryContainer: Color(0xffffffff),
+    onPrimaryContainer: Color(0xff1E1E1E),
 
     secondary: Color(0xDD000000),
-    onSecondary: Color(0xffffffff),
+    onSecondary: Color(0xff1E1E1E),
     secondaryContainer: Color(0xDD000000),
-    onSecondaryContainer: Color(0xffffffff),
+    onSecondaryContainer: Color(0xff1E1E1E),
 
     tertiary: Color(0xffd9d9d9),
+    onTertiary: Color(0xff2d2d2d),
 
     error: Color(0xffd32f2f),
     onError: Color(0xffffffff),
     errorContainer: Color(0xffef9a9a),
 
     surface: Color(0xffe5e5e5),
-    onSurface: Color(0xffe5e5e5),
+    onSurface: Color(0xff1E1E1E),
 
 
   );

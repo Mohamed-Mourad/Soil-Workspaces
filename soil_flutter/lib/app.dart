@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soil_flutter/blocs/navbar/navbar_bloc.dart';
 import 'package:soil_flutter/blocs/theme/theme_bloc.dart';
+import 'package:soil_flutter/blocs/workspace/workspace_bloc.dart';
+import 'package:soil_flutter/blocs/workspace/workspace_event.dart';
 import 'package:soil_flutter/layout/soil_app_layout.dart';
 import 'package:soil_flutter/themes/dark_theme.dart';
 import 'package:soil_flutter/themes/light_theme.dart';
@@ -19,6 +21,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => NavbarBloc(),
+        ),
+        BlocProvider(
+            create: (context) => WorkspaceBloc()..add(LoadWorkspaces()),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(

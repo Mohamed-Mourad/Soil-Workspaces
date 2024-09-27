@@ -14,13 +14,14 @@ class DarkTheme {
     onSecondaryContainer: Color(0xffffffff),
 
     tertiary: Color(0xff2d2d2d),
+    onTertiary: Color(0xffd9d9d9),
 
     error: Color(0xffd32f2f),
     onError: Color(0xffffffff),
     errorContainer: Color(0xffef9a9a),
 
     surface: Color(0xff1E1E1E),
-    onSurface: Color(0xff1E1E1E),
+    onSurface: Color(0xffffffff),
 
 
   );
