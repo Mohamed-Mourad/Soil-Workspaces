@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soil_flutter/blocs/navbar/navbar_bloc.dart';
 import 'package:soil_flutter/screens/home_screen.dart';
 import 'package:iconly/iconly.dart';
+import 'package:soil_flutter/screens/upcoming_screen.dart';
 import 'package:soil_flutter/widgets/bottom_nav_bar.dart';
 import 'package:soil_flutter/widgets/default_drawer.dart';
 
@@ -116,25 +117,6 @@ class SipsPage extends StatelessWidget {
     return Center(
       child: Text(
         'Sips Page',
-        style: TextStyle(
-          color: colorScheme.onPrimary,
-        ),
-      ),
-    );
-  }
-}
-
-class UpcomingPage extends StatelessWidget {
-  const UpcomingPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Center(
-      child: Text(
-          'Upcoming Page',
         style: TextStyle(
           color: colorScheme.onPrimary,
         ),
