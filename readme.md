@@ -8,6 +8,7 @@ API integration (optional), and overall code quality.
 
 - **View Workspaces**: Easily view workspaces with their location, images, and available amenities.
 - **Reserve Workspace**: reserve workspace for one or more slots.
+- **View Workspace Slots**: view available and reserved slots for a workspace.
 
 
 ## Getting Started
