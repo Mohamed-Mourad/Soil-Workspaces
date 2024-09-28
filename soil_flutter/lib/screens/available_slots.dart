@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soil_flutter/widgets/item_separator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soil_flutter/blocs/slot/slot_bloc.dart';
@@ -118,14 +119,18 @@ class _AvailableSlotsState extends State<AvailableSlots> {
       );
     }
     return Expanded(
-      child: ListView.builder(
+      child: ListView.separated(
         itemCount: slots.length,
+        separatorBuilder: (context, index) => const ItemSeparator(),
         itemBuilder: (context, index) {
           final slot = slots[index];
-          return ListTile(
-            title: Text('${slot.startTime.hour} - ${slot.endTime.hour}'),
-            subtitle: Text(slot.reserved ? 'Available' : 'Booked'),
-            tileColor: slot.reserved ? Colors.green[100] : Colors.red[100],
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              title: Text('${slot.startTime.hour} - ${slot.endTime.hour}'),
+              subtitle: Text(slot.reserved ? 'Available' : 'Booked'),
+              tileColor: slot.reserved ? Colors.green : Colors.red,
+            ),
           );
         },
       ),
