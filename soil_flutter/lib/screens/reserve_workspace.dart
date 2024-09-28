@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:soil_flutter/blocs/workspace/workspace_bloc.dart';
+import 'package:soil_flutter/blocs/workspace/workspace_event.dart';
 import 'package:soil_flutter/methods/navigations.dart';
 import 'package:soil_flutter/models/workspace_model.dart';
 import 'package:soil_flutter/screens/available_slots.dart';
@@ -275,7 +278,20 @@ class ReserveWorkspaceScreen extends StatelessWidget {
                       ),
                       DefaultButton(
                           text: "Request reservation",
-                          function: () {}
+                          function: () {
+                            if (formKey.currentState!.validate()) {
+                              // Assuming you've parsed and validated the inputs
+                              final dateTimeFrom = DateTime.parse('${dateController.text} ${startTimeController.text}');
+                              final dateTimeTo = DateTime.parse('${dateController.text} ${endTimeController.text}');
+
+                              context.read<WorkspaceBloc>().add(
+                                  ReserveWorkspace(
+                                    workspaceId: workspace.id,
+                                    dateTimeFrom: dateTimeFrom,
+                                    dateTimeTo: dateTimeTo,
+                              ));
+                            }
+                          },
                       ),
                       const SizedBox(
                         height: 45.0,

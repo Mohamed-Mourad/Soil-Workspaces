@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soil_flutter/methods/show_toast.dart';
 import 'package:soil_flutter/network/dio_helper.dart';
 import 'package:soil_flutter/models/workspace_model.dart';
 import 'workspace_event.dart';
@@ -51,8 +52,10 @@ class WorkspaceBloc extends Bloc<WorkspaceEvent, WorkspaceState> {
       );
 
       if (response.statusCode == 200) {
+        showToast(text: "Workspace reserved successfully!", state: ToastStates.SUCCESS);
         emit(WorkspaceReserved('Workspace reserved successfully!'));
       } else {
+        showToast(text: "Failed to reserve workspace: ${response.statusMessage}", state: ToastStates.ERROR);
         emit(WorkspaceReservationError('Failed to reserve workspace: ${response.statusMessage}'));
       }
     } catch (error) {
