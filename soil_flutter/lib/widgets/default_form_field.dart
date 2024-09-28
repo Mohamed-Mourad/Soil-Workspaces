@@ -13,6 +13,7 @@ class DefaultFormField extends StatelessWidget {
   final bool isClickable;
   final bool isPassword;
   final VoidCallback? suffixPressed;
+  final String hintText;
 
   const DefaultFormField({
     super.key,
@@ -28,6 +29,7 @@ class DefaultFormField extends StatelessWidget {
     this.isClickable = true,
     this.isPassword = false,
     this.suffixPressed,
+    this.hintText = "",
   });
 
   @override
@@ -60,7 +62,7 @@ class DefaultFormField extends StatelessWidget {
           borderSide: BorderSide(color: colorScheme.onTertiary, width: 1.0),
           borderRadius:  BorderRadius.all(Radius.circular(15.0)),
         ),
-        hintText: 'Tap to choose a date.',
+        hintText: hintText,
         hintStyle: TextStyle(color: colorScheme.onTertiary),
         prefixIcon: Icon(
             prefix,

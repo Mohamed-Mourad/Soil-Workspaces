@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soil_flutter/blocs/navbar/navbar_bloc.dart';
+import 'package:soil_flutter/blocs/slot/slot_bloc.dart';
 import 'package:soil_flutter/blocs/theme/theme_bloc.dart';
 import 'package:soil_flutter/blocs/workspace/workspace_bloc.dart';
 import 'package:soil_flutter/blocs/workspace/workspace_event.dart';
@@ -24,6 +25,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => WorkspaceBloc()..add(LoadWorkspaces()),
+        ),
+        BlocProvider(
+            create: (context) => SlotBloc(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(

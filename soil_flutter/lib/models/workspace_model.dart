@@ -1,4 +1,5 @@
 import 'package:soil_flutter/models/amenities_model.dart';
+import 'package:soil_flutter/utils/parse_images_string_to_list.dart';
 
 class Workspace {
   int id;
@@ -21,7 +22,7 @@ class Workspace {
     return Workspace(
       id: json['id'],
       name: json['name'],
-      images: List<String>.from(json['images']),
+      images: parseImages(json['images']),
       location: json['location'],
       capacity: json['capacity'],
       amenities: Amenities.fromJson(json['amenities']),

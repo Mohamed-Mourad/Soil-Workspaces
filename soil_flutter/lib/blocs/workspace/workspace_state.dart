@@ -17,3 +17,17 @@ class WorkspaceError extends WorkspaceState {
 
   WorkspaceError(this.message);
 }
+
+class WorkspaceReservationLoading extends WorkspaceState {}
+
+class WorkspaceReserved extends WorkspaceState {
+  final String successMessage;
+
+  WorkspaceReserved(this.successMessage);
+}
+
+class WorkspaceReservationError extends WorkspaceState {
+  final String message;
+
+  WorkspaceReservationError(this.message);
+}
