@@ -29,6 +29,9 @@ class ReserveWorkspaceScreen extends StatelessWidget {
     var dateController = TextEditingController();
     var startTimeController = TextEditingController();
     var endTimeController = TextEditingController();
+    DateTime? date;
+    TimeOfDay? start;
+    TimeOfDay? end;
 
     return SafeArea(
       child: Scaffold(
@@ -177,8 +180,8 @@ class ReserveWorkspaceScreen extends StatelessWidget {
                             firstDate: DateTime.now(),
                             lastDate: DateTime.parse('2024-12-30'),
                           ).then((value) {
-                            dateController.text =
-                                DateFormat.yMMMd().format(value!).toString();
+                            dateController.text = DateFormat.yMMMd().format(value!).toString();
+                            date = value;
                           });
                         },
                       ),
@@ -204,6 +207,7 @@ class ReserveWorkspaceScreen extends StatelessWidget {
                                   ).then((value) {
                                     final formattedTime = value?.format(context);
                                     startTimeController.text = formattedTime!;
+                                    start = value;
                                   });
                                 }),
                           ),
@@ -227,6 +231,7 @@ class ReserveWorkspaceScreen extends StatelessWidget {
                                   ).then((value) {
                                     final formattedTime = value?.format(context);
                                     endTimeController.text = formattedTime!;
+                                    end = value;
                                   });
                                 }),
                           ),
@@ -280,9 +285,20 @@ class ReserveWorkspaceScreen extends StatelessWidget {
                           text: "Request reservation",
                           function: () {
                             if (formKey.currentState!.validate()) {
-                              // Assuming you've parsed and validated the inputs
-                              final dateTimeFrom = DateTime.parse('${dateController.text} ${startTimeController.text}');
-                              final dateTimeTo = DateTime.parse('${dateController.text} ${endTimeController.text}');
+
+                              final dateTimeFrom = DateTime(
+                                date!.year,
+                                date!.month,
+                                date!.day,
+                                start!.hour
+                              );
+
+                              final dateTimeTo = DateTime(
+                                  date!.year,
+                                  date!.month,
+                                  date!.day,
+                                  end!.hour
+                              );
 
                               context.read<WorkspaceBloc>().add(
                                   ReserveWorkspace(

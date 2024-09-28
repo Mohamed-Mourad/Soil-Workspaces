@@ -128,8 +128,8 @@ class _AvailableSlotsState extends State<AvailableSlots> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               title: Text('${slot.startTime.hour} - ${slot.endTime.hour}'),
-              subtitle: Text(slot.reserved ? 'Available' : 'Booked'),
-              tileColor: slot.reserved ? Colors.green : Colors.red,
+              subtitle: Text(slot.reserved ? 'Reserved' : 'Available'),
+              tileColor: slot.reserved ? Colors.red : Colors.green,
             ),
           );
         },

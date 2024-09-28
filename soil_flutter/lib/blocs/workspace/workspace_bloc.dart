@@ -41,9 +41,10 @@ class WorkspaceBloc extends Bloc<WorkspaceEvent, WorkspaceState> {
       ) async {
     emit(WorkspaceReservationLoading());
     try {
+      print("reserve called ");
       // Use DioHelper to send reservation request to the API
       final response = await DioHelper.postData(
-        url: 'workspace/reserve',
+        url: 'workspaces/reserve',
         data: {
           'workspaceId': event.workspaceId,
           'dateTimeFrom': event.dateTimeFrom.toIso8601String(),
