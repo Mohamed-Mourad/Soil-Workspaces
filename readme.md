@@ -21,7 +21,7 @@ Ensure you have Flutter 3.2 and java 21 and MySQL installed on your machine.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Mohamed-Mourad/Budget-Tracker.git
+   git clone https://github.com/Mohamed-Mourad/Soil-Workspaces.git
    
 2. Navigate to the project directory:
    ```sh
